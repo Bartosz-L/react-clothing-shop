@@ -8,31 +8,36 @@ const Directory = () => {
   useEffect(() => {
     setSections([
       {
+        id: 1,
         title: 'hats',
         imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-        id: 1
+        linkUrl: 'hats'
       },
       {
+        id: 2,
         title: 'jackets',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        id: 2
+        linkUrl: 'jackets'
       },
       {
+        id: 3,
         title: 'sneakers',
         imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-        id: 3
+        linkUrl: 'sneakers'
       },
       {
+        id: 4,
         title: 'womens',
-        imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
         size: 'large',
-        id: 4
+        imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+        linkUrl: 'womens'
       },
       {
+        id: 5,
         title: 'mens',
-        imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
         size: 'large',
-        id: 5
+        imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+        linkUrl: 'mens'
       }
     ]);
   }, []);
@@ -44,6 +49,7 @@ const Directory = () => {
           key={section.id}
           title={section.title}
           imageUrl={section.imageUrl}
+          linkUrl={section.linkUrl}
           size={section.size}
         />
       ))}
