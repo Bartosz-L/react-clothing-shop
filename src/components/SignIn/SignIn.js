@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import './SignIn.scss';
 import FormInput from '../FormInput/FormInput';
+import CustomButton from '../CustomButton/CustomButton';
 
 const SignIn = () => {
   const [userCredentials, setUserCredentials] = useReducer(
@@ -42,7 +43,7 @@ const SignIn = () => {
           required
         />
 
-        <input type="submit" value="Submit" />
+        <CustomButton type="submit">Sign In</CustomButton>
       </form>
     </div>
   );
