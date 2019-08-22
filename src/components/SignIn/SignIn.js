@@ -43,7 +43,7 @@ const SignIn = () => {
           required
         />
 
-        <CustomButton type="submit">Sign In</CustomButton>
+        <CustomButton type="submit">Sign in</CustomButton>
       </form>
     </div>
   );
