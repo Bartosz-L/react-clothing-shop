@@ -3,32 +3,39 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { logOutUser } from '../../state/actions/userActions';
 
-const Header = ({ currentUser }) => (
-  <div className="header">
-    <NavLink className="logo-container" to="/">
-      <Logo className="logo" />
-    </NavLink>
+const Header = ({ currentUser, logOutUser }) => {
+  const handleLogOut = () => {
+    logOutUser();
+  };
 
-    <div className="options">
-      <NavLink className="option" to="/shop">
-        SHOP
+  return (
+    <div className="header">
+      <NavLink className="logo-container" to="/">
+        <Logo className="logo" />
       </NavLink>
-      <NavLink className="option" to="/contact">
-        CONTACT
-      </NavLink>
-      {currentUser ? (
-        <div className="option" onClick={() => console.log('signed out')}>
-          SIGN OUT
-        </div>
-      ) : (
-        <NavLink className="option" to="/signin">
-          SIGN IN
+
+      <div className="options">
+        <NavLink className="option" to="/shop">
+          SHOP
         </NavLink>
-      )}
+        <NavLink className="option" to="/contact">
+          CONTACT
+        </NavLink>
+        {currentUser ? (
+          <div className="option" onClick={handleLogOut}>
+            SIGN OUT
+          </div>
+        ) : (
+          <NavLink className="option" to="/signin">
+            SIGN IN
+          </NavLink>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser
@@ -36,5 +43,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { logOutUser }
 )(Header);

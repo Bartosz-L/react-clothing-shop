@@ -1,9 +1,12 @@
 import React, { useReducer } from 'react';
 import './SignIn.scss';
+import { connect } from 'react-redux';
+import { loginUser } from '../../state/actions/userActions';
+
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 
-const SignIn = () => {
+const SignIn = ({ loginUser, user }) => {
   const [userCredentials, setUserCredentials] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     { email: '', password: '' }
@@ -16,7 +19,7 @@ const SignIn = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setUserCredentials({ email: '', password: '' });
+    loginUser(userCredentials.email, userCredentials.password);
   };
 
   return (
@@ -49,4 +52,10 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(SignIn);

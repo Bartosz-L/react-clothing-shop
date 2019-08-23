@@ -4,6 +4,11 @@
       "email": "admin@mail.com",
       "password": "$2a$10$eCtU07IDkiK8Bs6Ht55pZeHxOQoQw4YqP8M4x0kMHU35ih6RBDJvC",
       "id": 1
+    },
+    {
+      "email": "admin@admin.com",
+      "password": "$2a$10$ENiG1.6Ouz6fK4S7vQT0/u0S3cq14u6vjM0/HmpoUiN6Opbh7SXru",
+      "id": 2
     }
   ],
   "shop-data": [
