@@ -33,7 +33,6 @@ const SignIn = () => {
           label="email"
           required
         />
-
         <FormInput
           type="password"
           name="password"
@@ -42,8 +41,9 @@ const SignIn = () => {
           label="password"
           required
         />
-
-        <CustomButton type="submit">Sign in</CustomButton>
+        <div className="buttons">
+          <CustomButton type="submit"> Sign in </CustomButton>
+        </div>
       </form>
     </div>
   );

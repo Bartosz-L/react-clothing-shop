@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
-const Header = () => (
+const Header = ({ currentUser }) => (
   <div className="header">
     <NavLink className="logo-container" to="/">
       <Logo className="logo" />
@@ -16,8 +17,24 @@ const Header = () => (
       <NavLink className="option" to="/contact">
         CONTACT
       </NavLink>
+      {currentUser ? (
+        <div className="option" onClick={() => console.log('signed out')}>
+          SIGN OUT
+        </div>
+      ) : (
+        <NavLink className="option" to="/signin">
+          SIGN IN
+        </NavLink>
+      )}
     </div>
   </div>
 );
 
-export default Header;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Header);
