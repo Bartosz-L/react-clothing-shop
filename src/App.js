@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { loadUser } from './state/actions/userActions';
@@ -10,7 +15,7 @@ import ShopPage from './pages/Shoppage/ShopPage';
 import Header from './components/Header/Header';
 import AuthPage from './pages/AuthPage/AuthPage';
 
-const App = ({ loadUser }) => {
+const App = ({ loadUser, currentUser }) => {
   useEffect(() => {
     loadUser();
     // eslint-disable-next-line
@@ -22,7 +27,13 @@ const App = ({ loadUser }) => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
-        <Route exact path="/signin" component={AuthPage} />
+        <Route
+          exact
+          path="/login"
+          render={() =>
+            currentUser !== null ? <Redirect to="/" /> : <AuthPage />
+          }
+        />
       </Switch>
     </Router>
   );
