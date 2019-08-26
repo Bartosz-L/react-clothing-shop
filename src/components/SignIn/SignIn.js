@@ -6,7 +6,7 @@ import { loginUser } from '../../state/actions/userActions';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 
-const SignIn = ({ loginUser, user }) => {
+const SignIn = ({ loginUser }) => {
   const [userCredentials, setUserCredentials] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     { email: '', password: '' }

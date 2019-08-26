@@ -5,8 +5,9 @@ import './Header.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { logOutUser } from '../../state/actions/userActions';
 import CartIcon from '../CartIcon/CartIcon';
+import CartDropdown from '../CartDropdown/CartDropdown';
 
-const Header = ({ currentUser, logOutUser }) => {
+const Header = ({ currentUser, logOutUser, hidden }) => {
   const handleLogOut = () => {
     logOutUser();
   };
@@ -35,12 +36,14 @@ const Header = ({ currentUser, logOutUser }) => {
         )}
         <CartIcon />
       </div>
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  hidden: state.cart.hidden
 });
 
 export default connect(
