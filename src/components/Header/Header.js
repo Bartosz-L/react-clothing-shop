@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { logOutUser } from '../../state/actions/userActions';
+import CartIcon from '../CartIcon/CartIcon';
 
 const Header = ({ currentUser, logOutUser }) => {
   const handleLogOut = () => {
@@ -32,6 +33,7 @@ const Header = ({ currentUser, logOutUser }) => {
             SIGN IN
           </NavLink>
         )}
+        <CartIcon />
       </div>
     </div>
   );
