@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { logOutUser } from '../../state/actions/userActions';
-import CartIcon from '../CartIcon/CartIcon';
-import CartDropdown from '../CartDropdown/CartDropdown';
+import CartIcon from '../Cart/CartIcon/CartIcon';
+import CartDropdown from '../Cart/CartDropdown/CartDropdown';
 
 const Header = ({ currentUser, logOutUser, hidden }) => {
   const handleLogOut = () => {
