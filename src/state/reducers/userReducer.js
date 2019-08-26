@@ -21,23 +21,28 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         loading: false,
-        token: action.payload,
-        currentUser: action.payload,
+        token: action.payload.token,
+        currentUser: action.payload.email,
         error: false
       };
     case AUTH_USER:
-      localStorage.setItem('token', action.payload.accessToken);
+      const user = {
+        token: action.payload.token,
+        email: action.payload.email
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+
       return {
         ...state,
         isAuthenticated: true,
         loading: false,
-        token: action.payload.accessToken,
-        currentUser: action.payload.accessToken,
+        token: user.token,
+        currentUser: user.email,
         error: false
       };
     case AUTH_ERROR:
     case LOG_OUT:
-      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       return {
         ...state,
         token: null,

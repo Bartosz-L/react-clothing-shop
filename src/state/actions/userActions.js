@@ -11,16 +11,16 @@ import setAuthToken from '../../utils/setAuthToken';
 // set current user after logging in
 export const loadUser = () => {
   return (dispatch, getState) => {
-    let token;
     setLoading();
 
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-      token = localStorage.token;
+    if (localStorage.user) {
+      const user = JSON.parse(localStorage.user);
+
+      setAuthToken(user.token);
 
       dispatch({
         type: LOAD_USER,
-        payload: token
+        payload: { token: user.token, email: user.email }
       });
     } else {
       dispatch({
@@ -42,7 +42,7 @@ export const loginUser = (email, password) => {
 
       dispatch({
         type: AUTH_USER,
-        payload: res.data
+        payload: { token: res.data.accessToken, email: email },
       });
     } catch (error) {
       dispatch({ type: AUTH_ERROR, payload: error.response.data });
