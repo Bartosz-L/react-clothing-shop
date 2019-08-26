@@ -1,10 +1,12 @@
 import React from 'react';
 import './CartDropdown.scss';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CustomButton from '../../CustomButton/CustomButton';
 import CartItem from '../CartItem/CartItem';
 
-const CartDropdown = ({ cartItems }) => {
+const CartDropdown = () => {
+  const cartItems = useSelector(state => state.cart.cartItems);
+
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
@@ -16,8 +18,5 @@ const CartDropdown = ({ cartItems }) => {
     </div>
   );
 };
-const mapStateToProps = state => ({
-  cartItems: state.cart.cartItems
-});
 
-export default connect(mapStateToProps)(CartDropdown);
+export default CartDropdown;
