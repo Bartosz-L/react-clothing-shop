@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './CartIcon.scss';
 import { ReactComponent as ShoppingIcon } from '../../../assets/bag.svg';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toggleCart } from '../../../state/actions/cartActions';
 
-const CartIcon = ({ toggleCart }) => (
-  <div className="cart-icon" onClick={toggleCart}>
-    <ShoppingIcon className="shopping-icon" />
-    <span className="item-count">0</span>
-  </div>
-);
+const CartIcon = () => {
+  const itemCount = useSelector(state =>
+    state.cart.cartItems.reduce(
+      (accumulatedQuantity, cartItem) =>
+        accumulatedQuantity + cartItem.quantity,
+      0
+    )
+  );
 
-export default connect(
-  null,
-  { toggleCart }
-)(CartIcon);
+  const dispatch = useDispatch();
+  const handleToggleCart = useCallback(() => dispatch(toggleCart()), [
+    dispatch
+  ]);
+
+  return (
+    <div className="cart-icon" onClick={handleToggleCart}>
+      <ShoppingIcon className="shopping-icon" />
+      <span className="item-count">{itemCount}</span>
+    </div>
+  );
+};
+
+export default CartIcon;
