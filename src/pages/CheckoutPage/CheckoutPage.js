@@ -5,6 +5,7 @@ import {
   selectCartItems,
   selectCartTotalPrice
 } from '../../state/selectors/cartSelectors';
+import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
 
 const CheckoutPage = () => {
   const cartItems = useSelector(state => selectCartItems(state));
@@ -29,7 +30,9 @@ const CheckoutPage = () => {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map(cartItem => cartItem.name)}
+      {cartItems.map(cartItem => (
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      ))}
       <div className="total">
         <span>TOTAL: ${total}</span>
       </div>
