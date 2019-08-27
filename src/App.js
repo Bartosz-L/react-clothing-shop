@@ -10,10 +10,12 @@ import {
 import { connect } from 'react-redux';
 import { loadUser } from './state/actions/userActions';
 
-import HomePage from './pages/Homepage/HomePage';
-import ShopPage from './pages/Shoppage/ShopPage';
+// components
+import HomePage from './pages/HomePage/HomePage';
+import ShopPage from './pages/ShopPage/ShopPage';
 import Header from './components/Header/Header';
 import AuthPage from './pages/AuthPage/AuthPage';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 
 const App = ({ loadUser, currentUser }) => {
   useEffect(() => {
@@ -27,6 +29,7 @@ const App = ({ loadUser, currentUser }) => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         <Route
           exact
           path="/login"
