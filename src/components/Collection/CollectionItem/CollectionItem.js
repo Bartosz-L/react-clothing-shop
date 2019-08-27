@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './CollectionItem.scss';
 import CustomButton from '../../CustomButton/CustomButton';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem } from '../../../state/actions/cartActions';
 
-const CollectionItem = ({ item, addItem }) => {
+const CollectionItem = ({ item }) => {
   const { name, price, imageUrl } = item;
 
-  const hadnleAddItem = () => {
-    addItem(item);
-  };
+  const dispatch = useDispatch();
+  const handleAddItem = useCallback(() => dispatch(addItem(item)), [
+    dispatch,
+    item
+  ]);
 
   return (
     <div className="collection-item">
@@ -18,14 +20,11 @@ const CollectionItem = ({ item, addItem }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <CustomButton inverted onClick={hadnleAddItem}>
+      <CustomButton inverted onClick={handleAddItem}>
         Add to cart
       </CustomButton>
     </div>
   );
 };
 
-export default connect(
-  null,
-  { addItem }
-)(CollectionItem);
+export default CollectionItem;

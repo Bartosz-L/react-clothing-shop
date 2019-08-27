@@ -5,3 +5,5 @@ export const LOAD_USER = 'LOAD_USER';
 export const SET_LOADING = 'SET_LOADING';
 export const TOGGLE_CART = 'TOGGLE_CART';
 export const ADD_ITEM = 'ADD_ITEMS';
+export const CLEAR_ITEM_FROM_CART = 'CLEAR_ITEM_FROM_CART';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
