@@ -1,16 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
+// components
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { logOutUser } from '../../state/actions/userActions';
 import CartIcon from '../Cart/CartIcon/CartIcon';
 import CartDropdown from '../Cart/CartDropdown/CartDropdown';
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { logOutUser } from '../../state/actions/userActions';
+import { selectCartHidden } from '../../state/selectors/cartSelectors';
+import { selectCurrentUser } from '../../state/selectors/userSelectors';
 
-const Header = ({ currentUser, logOutUser, hidden }) => {
-  const handleLogOut = () => {
-    logOutUser();
-  };
+const Header = () => {
+  const currentUser = useSelector(state => selectCurrentUser(state));
+  const hidden = useSelector(state => selectCartHidden(state));
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = useCallback(() => dispatch(logOutUser()), [dispatch]);
 
   return (
     <div className="header">
@@ -41,12 +48,4 @@ const Header = ({ currentUser, logOutUser, hidden }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
-  hidden: state.cart.hidden
-});
-
-export default connect(
-  mapStateToProps,
-  { logOutUser }
-)(Header);
+export default Header;
