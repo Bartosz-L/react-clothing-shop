@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './CartDropdown.scss';
 import { withRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import CustomButton from '../../CustomButton/CustomButton';
 import CartItem from '../CartItem/CartItem';
 import { selectCartItems } from '../../../state/selectors/cartSelectors';
+import { toggleCart } from '../../../state/actions/cartActions';
 
 const CartDropdown = ({ history }) => {
   const cartItems = useSelector(state => selectCartItems(state));
-  const handleGoToCheckout = () => {
+
+  const dispatch = useDispatch();
+  const handleGoToCheckout = useCallback(() => {
     history.push('/checkout');
-  };
+    return dispatch(toggleCart());
+  }, [dispatch, history]);
 
   return (
     <div className="cart-dropdown">
