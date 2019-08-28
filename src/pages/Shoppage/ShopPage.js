@@ -1,34 +1,12 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import CollectionPreview from '../../components/Collection/CollectionPreview/CollectionPreview';
-import { loadShopItems } from '../../state/actions/shopActions';
-import { selectCollections } from '../../state/selectors/shopSelectors';
+import React from 'react';
+import CollectionsOverview from '../../components/Collection/CollectionsOverview/CollectionsOverview';
 
-const ShopPage = ({ loadShopItems, collections }) => {
-  useEffect(() => {
-    loadShopItems();
-  }, [loadShopItems]);
-
+const ShopPage = ({ collections }) => {
   return (
-    <>
-      <div className="shop-page">
-        {collections.map(collection => (
-          <CollectionPreview
-            key={collection.id}
-            title={collection.title}
-            items={collection.items}
-          />
-        ))}
-      </div>
-    </>
+    <div className="shop-page">
+      <CollectionsOverview />
+    </div>
   );
 };
 
-const mapStateToProps = state => ({
-  collections: selectCollections(state)
-});
-
-export default connect(
-  mapStateToProps,
-  { loadShopItems }
-)(ShopPage);
+export default ShopPage;
