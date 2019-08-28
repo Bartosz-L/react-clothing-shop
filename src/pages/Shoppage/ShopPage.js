@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import SHOP_DATA from './shopdata';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import CollectionPreview from '../../components/Collection/CollectionPreview/CollectionPreview';
+import { loadShopItems } from '../../state/actions/shopActions';
 
-const ShopPage = () => {
-  const [collections, setCollections] = useState([]);
-
+const ShopPage = ({ loadShopItems, collections }) => {
   useEffect(() => {
-    setCollections(SHOP_DATA);
-  }, [collections]);
+    loadShopItems();
+  }, [loadShopItems]);
 
   return (
     <>
@@ -24,4 +23,11 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage;
+const mapStateToProps = state => ({
+  collections: state.shop.collections
+});
+
+export default connect(
+  mapStateToProps,
+  { loadShopItems }
+)(ShopPage);

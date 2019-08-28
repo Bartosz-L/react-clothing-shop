@@ -9,6 +9,7 @@ import {
 
 import { connect } from 'react-redux';
 import { loadUser } from './state/actions/userActions';
+import { loadShopItems } from './state/actions/shopActions';
 
 // components
 import HomePage from './pages/HomePage/HomePage';
@@ -17,8 +18,9 @@ import Header from './components/Header/Header';
 import AuthPage from './pages/AuthPage/AuthPage';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 
-const App = ({ loadUser, currentUser }) => {
+const App = ({ loadUser, loadShopItems, currentUser }) => {
   useEffect(() => {
+    loadShopItems();
     loadUser();
     // eslint-disable-next-line
   }, []);
@@ -48,5 +50,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadUser }
+  { loadUser, loadShopItems }
 )(App);
