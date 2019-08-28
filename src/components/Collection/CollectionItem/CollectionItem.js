@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import './CollectionItem.scss';
 import CustomButton from '../../CustomButton/CustomButton';
 import { useDispatch } from 'react-redux';
@@ -8,10 +8,7 @@ const CollectionItem = ({ item }) => {
   const { name, price, imageUrl } = item;
 
   const dispatch = useDispatch();
-  const handleAddItem = useCallback(() => dispatch(addItem(item)), [
-    dispatch,
-    item
-  ]);
+  const handleAddItem = () => dispatch(addItem(item));
 
   return (
     <div className="collection-item">
