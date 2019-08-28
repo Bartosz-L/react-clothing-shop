@@ -5,7 +5,6 @@ export const loadShopItems = () => {
   return async (dispatch, getState) => {
     setLoading();
     const res = await axios.get('/shop-data');
-    console.log(res);
 
     dispatch({
       type: LOAD_SHOP_ITEMS,
