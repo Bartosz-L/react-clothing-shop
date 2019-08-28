@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import CollectionPreview from '../../components/Collection/CollectionPreview/CollectionPreview';
 import { loadShopItems } from '../../state/actions/shopActions';
+import { selectCollections } from '../../state/selectors/shopSelectors';
 
 const ShopPage = ({ loadShopItems, collections }) => {
   useEffect(() => {
@@ -24,7 +25,7 @@ const ShopPage = ({ loadShopItems, collections }) => {
 };
 
 const mapStateToProps = state => ({
-  collections: state.shop.collections
+  collections: selectCollections(state)
 });
 
 export default connect(
