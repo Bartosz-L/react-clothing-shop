@@ -13,8 +13,8 @@ export const loadUser = () => {
   return (dispatch, getState) => {
     setLoading();
 
-    if (localStorage.user) {
-      const user = JSON.parse(localStorage.user);
+    if (localStorage.getItem('user')) {
+      const user = JSON.parse(localStorage.getItem('user'));
 
       setAuthToken(user.token);
 
@@ -42,7 +42,7 @@ export const loginUser = (email, password) => {
 
       dispatch({
         type: AUTH_USER,
-        payload: { token: res.data.accessToken, email: email },
+        payload: { token: res.data.accessToken, email: email }
       });
     } catch (error) {
       dispatch({ type: AUTH_ERROR, payload: error.response.data });
