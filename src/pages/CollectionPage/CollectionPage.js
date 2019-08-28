@@ -21,7 +21,7 @@ const CollectionPage = ({ collection, match }) => {
   } else {
     return (
       <div className="loader-container">
-        <div class="loader"></div>
+        <div className="loader"></div>
       </div>
     );
   }

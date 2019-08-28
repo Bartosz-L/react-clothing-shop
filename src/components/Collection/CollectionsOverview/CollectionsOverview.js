@@ -7,19 +7,21 @@ const CollectionsOverview = ({ collections }) => {
   if (collections) {
     return (
       <div className="collections-overview">
-        {collections.map(collection => (
-          <CollectionPreview
-            key={collection.id}
-            title={collection.title}
-            items={collection.items}
-          />
-        ))}
+        {Object.keys(collections).map(collection => {
+          return (
+            <CollectionPreview
+              key={collections[collection].id}
+              title={collections[collection].title}
+              items={collections[collection].items}
+            />
+          );
+        })}
       </div>
     );
   } else {
     return (
       <div className="loader-container">
-        <div class="loader"></div>
+        <div className="loader"></div>
       </div>
     );
   }
