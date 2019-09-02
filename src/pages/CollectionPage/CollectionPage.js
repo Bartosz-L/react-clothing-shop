@@ -1,5 +1,9 @@
 import React from 'react';
-import './CollectionPage.scss';
+import {
+  CollectionPageContainer,
+  CollectionTitle,
+  CollectionItemsContainer
+} from './CollectionPage.styles';
 import '../../assets/loader.scss';
 import { connect } from 'react-redux';
 import { selectCollection } from '../../state/selectors/shopSelectors';
@@ -9,14 +13,14 @@ const CollectionPage = ({ collection, match }) => {
   if (collection) {
     const { title, items } = collection;
     return (
-      <div className="collection-page">
-        <h2 className="title">{title}</h2>
-        <div className="items">
+      <CollectionPageContainer>
+        <CollectionTitle>{title}</CollectionTitle>
+        <CollectionItemsContainer>
           {items.map(item => (
             <CollectionItem key={item.id} item={item} />
           ))}
-        </div>
-      </div>
+        </CollectionItemsContainer>
+      </CollectionPageContainer>
     );
   } else {
     return (

@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import './SignUp.scss';
+import { SignUpContainer, SignUpTitle } from './SignUp.styles';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 
@@ -25,8 +25,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-up">
-      <h2 className="title">I do not have a account</h2>
+    <SignUpContainer>
+      <SignUpTitle>I do not have a account</SignUpTitle>
       <span>Sign up with your email and password</span>
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
@@ -63,7 +63,7 @@ const SignUp = () => {
         />
         <CustomButton type="submit">SIGN UP</CustomButton>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 

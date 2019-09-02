@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react';
-import { NavLink } from 'react-router-dom';
-import './Header.scss';
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionsContainer,
+  OptionLink
+} from './Header.styles';
 // components
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../Cart/CartIcon/CartIcon';
@@ -20,31 +24,25 @@ const Header = () => {
   const handleLogOut = useCallback(() => dispatch(logOutUser()), [dispatch]);
 
   return (
-    <div className="header">
-      <NavLink className="logo-container" to="/">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo className="logo" />
-      </NavLink>
+      </LogoContainer>
 
-      <div className="options">
-        <NavLink className="option" to="/shop">
-          SHOP
-        </NavLink>
-        <NavLink className="option" to="/contact">
-          CONTACT
-        </NavLink>
+      <OptionsContainer>
+        <OptionLink to="/shop">SHOP</OptionLink>
+        <OptionLink to="/contact">CONTACT</OptionLink>
         {currentUser ? (
-          <div className="option" onClick={handleLogOut}>
+          <OptionLink as="div" onClick={handleLogOut}>
             SIGN OUT
-          </div>
+          </OptionLink>
         ) : (
-          <NavLink className="option" to="/login">
-            SIGN IN
-          </NavLink>
+          <OptionLink to="/login">SIGN IN</OptionLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
       {hidden ? null : <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 

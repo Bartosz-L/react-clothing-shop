@@ -1,6 +1,9 @@
-import React, { useCallback } from 'react';
-import './CartIcon.scss';
-import { ReactComponent as ShoppingIcon } from '../../../assets/bag.svg';
+import React from 'react';
+import {
+  CartContainer,
+  ShoppingIcon,
+  ItemCountContainer
+} from './CartIcon.styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleCart } from '../../../state/actions/cartActions';
 import { selectCartItemsCount } from '../../../state/selectors/cartSelectors';
@@ -9,15 +12,13 @@ const CartIcon = () => {
   const itemCount = useSelector(state => selectCartItemsCount(state));
 
   const dispatch = useDispatch();
-  const handleToggleCart = useCallback(() => dispatch(toggleCart()), [
-    dispatch
-  ]);
+  const handleToggleCart = () => dispatch(toggleCart());
 
   return (
-    <div className="cart-icon" onClick={handleToggleCart}>
-      <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">{itemCount}</span>
-    </div>
+    <CartContainer onClick={handleToggleCart}>
+      <ShoppingIcon />
+      <ItemCountContainer>{itemCount}</ItemCountContainer>
+    </CartContainer>
   );
 };
 
