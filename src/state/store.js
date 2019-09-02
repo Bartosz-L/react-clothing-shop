@@ -5,14 +5,14 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-const initialState = {};
+const middlewares = [thunk];
 
-const middleware = [thunk, logger];
-
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
 const store = createStore(
   rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+  composeWithDevTools(applyMiddleware(...middlewares))
 );
 
 const persistor = persistStore(store);
