@@ -23,7 +23,7 @@ const App = ({ loadUser, loadShopItems, currentUser }) => {
     loadShopItems();
     loadUser();
     // eslint-disable-next-line
-  }, []);
+  }, [loadShopItems, loadUser]);
 
   return (
     <Router>
