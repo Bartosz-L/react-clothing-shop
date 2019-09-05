@@ -4,7 +4,7 @@ import {
   CollectionTitle,
   CollectionItemsContainer
 } from './CollectionPage.styles';
-import '../../assets/loader.scss';
+import Loader from '../../components/Loader/Loader';
 import { connect } from 'react-redux';
 import { selectCollection } from '../../state/selectors/shopSelectors';
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem';
@@ -23,11 +23,7 @@ const CollectionPage = ({ collection, match }) => {
       </CollectionPageContainer>
     );
   } else {
-    return (
-      <div className="loader-container">
-        <div className="loader"></div>
-      </div>
-    );
+    return <Loader />;
   }
 };
 

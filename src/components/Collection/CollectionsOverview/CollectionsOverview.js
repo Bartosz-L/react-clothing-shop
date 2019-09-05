@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../assets/loader.scss';
+import Loader from '../../Loader/Loader';
 import { CollectionsOverviewContainer } from './CollectionsOverview.styles';
 import { useSelector } from 'react-redux';
 import CollectionPreview from '../CollectionPreview/CollectionPreview';
@@ -17,11 +17,7 @@ const CollectionsOverview = () => {
       </CollectionsOverviewContainer>
     );
   } else {
-    return (
-      <div className="loader-container">
-        <div className="loader"></div>
-      </div>
-    );
+    return <Loader />;
   }
 };
 
