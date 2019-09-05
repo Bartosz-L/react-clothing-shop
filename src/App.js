@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import { GlobalStyle } from './global.styles';
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,6 +27,7 @@ const App = ({ loadUser, loadShopItems, currentUser }) => {
 
   return (
     <Router>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
