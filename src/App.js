@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { GlobalStyle } from './global.styles';
 import {
   BrowserRouter as Router,
@@ -12,11 +12,12 @@ import { loadUser } from './state/actions/userActions';
 import { loadShopItems } from './state/actions/shopActions';
 
 // components
-import HomePage from './pages/HomePage/HomePage';
-import ShopPage from './pages/ShopPage/ShopPage';
 import Header from './components/Header/Header';
-import AuthPage from './pages/AuthPage/AuthPage';
-import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
+import Loader from './components/Loader/Loader';
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const ShopPage = lazy(() => import('./pages/ShopPage/ShopPage'));
+const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage/CheckoutPage'));
 
 const App = ({ loadUser, loadShopItems, currentUser }) => {
   useEffect(() => {
@@ -30,16 +31,18 @@ const App = ({ loadUser, loadShopItems, currentUser }) => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route exact path="/checkout" component={CheckoutPage} />
-        <Route
-          exact
-          path="/login"
-          render={() =>
-            currentUser !== null ? <Redirect to="/" /> : <AuthPage />
-          }
-        />
+        <Suspense fallback={<Loader />}>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route
+            exact
+            path="/login"
+            render={() =>
+              currentUser !== null ? <Redirect to="/" /> : <AuthPage />
+            }
+          />
+        </Suspense>
       </Switch>
     </Router>
   );
