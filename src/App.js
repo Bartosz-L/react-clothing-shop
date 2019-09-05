@@ -14,6 +14,7 @@ import { loadShopItems } from './state/actions/shopActions';
 // components
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ShopPage = lazy(() => import('./pages/ShopPage/ShopPage'));
 const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
@@ -31,18 +32,20 @@ const App = ({ loadUser, loadShopItems, currentUser }) => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <Suspense fallback={<Loader />}>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <Route
-            exact
-            path="/login"
-            render={() =>
-              currentUser !== null ? <Redirect to="/" /> : <AuthPage />
-            }
-          />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<Loader />}>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/shop" component={ShopPage} />
+            <Route exact path="/checkout" component={CheckoutPage} />
+            <Route
+              exact
+              path="/login"
+              render={() =>
+                currentUser !== null ? <Redirect to="/" /> : <AuthPage />
+              }
+            />
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
     </Router>
   );
